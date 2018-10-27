@@ -1,0 +1,85 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8 my-5">
+            <h1>{{ name }}</h1>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8 my-4">
+          <h3>{{if editMode "Edit your" "Write a new"}} post</h3>
+          <div class="form-group">
+            <label for="postTitle">Post Title</label>
+            {{input value=titleInput class="form-control" placeholder="My Great Post"}}
+          </div>
+          <div class="form-group">
+            <label for="postContent">Post Content</label>
+            {{textarea value=contentInput class="form-control" cols="80" rows="6" placeholder="This had better be good!"}}
+          </div>
+          {{#if editMode}}
+          <button class="btn btn-primary" type="submit" value="submit" {{action "updatePost" postToEdit}}>Update Post</button>
+          {{else}}
+          <button class="btn btn-primary" type="submit" value="submit" {{action "saveNewPost"}}>Save</button>
+          {{/if}}
+          <hr>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+  <div class="row justify-content-center">
+    {{#each model as |post|}}
+      <div class="col-md-12">
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <button type="button" class="btn btn-outline-secondary">Action</button>
+                <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                    <div role="separator" class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Separated link</a>
+                </div>
+            </div>
+        <p class="form-control">{{post.title}}</p>
+        </div>
+
+      <div class="card my-3" id="postCard">
+        <img src="{{post.featured_image}}?image={{post.id}}" class="card-img-top img-fluid {{if post.post_published "published" "draft"}}">
+            <div class="card-body">
+
+                <h5 class="card-title {{if post.post_published "text-black" "text-secondary"}}">
+                {{post.title}}{{if post.post_published "" "(DRAFT)"}}
+                </h5>
+                <p class="small">{{unix post.created_at}}</p>
+                <p>{{markdown-to-html post.content}}</p>
+
+
+                {{#if post.post_published}}
+                <button class="btn btn-success" {{action "postToDraft" post}}>Set to Draft</button>
+                {{else}}
+                
+                {{#if post.postToDelete}}
+                <button class="btn btn-danger" {{action "deletePost" post}}>Really?</button>
+                <button class="btn btn-secondary" {{action "cancelDeletePost" post}}>Cancel</button>
+                {{else}}
+                <button class="btn btn-secondary" {{action "postToPublished" post}}>Publish</button>
+                <button class="btn btn-danger" {{action "setDeletePost" post}}>Delete</button>
+                <button class="btn btn-primary" {{action "editPost" post}}>Edit</button>
+                {{/if}}
+
+                {{/if}}
+            </div>
+        </div>
+
+      </div>    
+    {{/each}}
+    
+  </div>
+</div>
