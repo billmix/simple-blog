@@ -29,57 +29,81 @@
 </div>
 
 <div class="container">
-  <div class="row justify-content-center">
-    {{#each model as |post|}}
-      <div class="col-md-12">
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">Post</th>
+      <th scope="col">Title</th>
+      <th scope="col">State</th>
+      <th scope="col">Date Published</th>
+      <th scope="col">Date Updated</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each model as |post index|}}
+    <tr>
+        <th scope="row">{{index}}</th>
+        <td>{{post.title}}</td>
+        <td>{{if post.post_published "Published" "Draft"}}</td>
+        <td>{{unix post.created_at}}</td>
+        <td>{{post.updated_at}}</td>
+        <td>
 
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <button type="button" class="btn btn-outline-secondary">Action</button>
-                <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="sr-only">Toggle Dropdown</span>
-                </button>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                    <div role="separator" class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Separated link</a>
-                </div>
-            </div>
-        <p class="form-control">{{post.title}}</p>
-        </div>
+        {{#if post.post_published}}
+        <button class="btn btn-success" {{action "postToDraft" post}}>Set to Draft</button>
+        {{else}}
 
-      <div class="card my-3" id="postCard">
-        <img src="{{post.featured_image}}?image={{post.id}}" class="card-img-top img-fluid {{if post.post_published "published" "draft"}}">
-            <div class="card-body">
+        {{#if post.postToDelete}}
+        <button class="btn btn-danger" {{action "deletePost" post}}>Really?</button>
+        <button class="btn btn-secondary" {{action "cancelDeletePost" post}}>Cancel</button>
+        {{else}}
+        <button class="btn btn-secondary" {{action "postToPublished" post}}>Publish</button>
+        <button class="btn btn-danger" {{action "setDeletePost" post}}>Delete</button>
+        <button class="btn btn-primary" data-toggle="modal" data-target=".editModal" {{action "editPost" post}}>Edit</button>
+        {{/if}}
 
-                <h5 class="card-title {{if post.post_published "text-black" "text-secondary"}}">
-                {{post.title}}{{if post.post_published "" "(DRAFT)"}}
-                </h5>
-                <p class="small">{{unix post.created_at}}</p>
-                <p>{{markdown-to-html post.content}}</p>
+        {{/if}}
 
+        </td>
 
-                {{#if post.post_published}}
-                <button class="btn btn-success" {{action "postToDraft" post}}>Set to Draft</button>
-                {{else}}
-                
-                {{#if post.postToDelete}}
-                <button class="btn btn-danger" {{action "deletePost" post}}>Really?</button>
-                <button class="btn btn-secondary" {{action "cancelDeletePost" post}}>Cancel</button>
-                {{else}}
-                <button class="btn btn-secondary" {{action "postToPublished" post}}>Publish</button>
-                <button class="btn btn-danger" {{action "setDeletePost" post}}>Delete</button>
-                <button class="btn btn-primary" {{action "editPost" post}}>Edit</button>
-                {{/if}}
-
-                {{/if}}
-            </div>
-        </div>
-
-      </div>    
+    </tr>
     {{/each}}
+    </tbody>
+</table>
+
+<div class="modal fade editModal" tabindex="-1" role="dialog" aria-labelledby="editModal" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      ...
+    </div>
+  </div>
+</div>
     
+</div>
+
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
   </div>
 </div>

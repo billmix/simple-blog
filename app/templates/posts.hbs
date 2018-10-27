@@ -15,7 +15,7 @@
             <img src="{{post.featured_image}}?image={{post.id}}" class="card-img-top img-fluid published">
                 <div class="card-body">
                     <h5 class="card-title text-black">
-                    {{post.title}}
+                    {{#link-to 'post' post.id}}{{post.title}}{{/link-to}}
                     </h5>
                     <p class="small">{{unix post.created_at}}</p>
                     <p>{{markdown-to-html post.content}}</p>

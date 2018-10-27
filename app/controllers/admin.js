@@ -34,7 +34,7 @@ export default Controller.extend({
 
         updatePost(postToEdit){
             var contentInput = this.get('contentInput');
-            var titleInput = this.get('titleInput')
+            var titleInput = this.get('titleInput');
             var post = this.store.find('post', postToEdit).then(function(post){
                 post.set('title', titleInput);
                 post.set('content', contentInput);
