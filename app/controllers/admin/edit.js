@@ -1,16 +1,22 @@
 import Controller from '@ember/controller';
-import moment from 'moment';
-import { set } from '@ember/object';
 
 export default Controller.extend({
 
     actions:{
-        updatePost(){
+        updatePost(model){
+            if(this.get('featured_post',true)){
+              model.set('featured_post', true);
+            }
             this.get('model').save();
             this.set('editMode', false);
+
+            //destroy the Modal
+            $("body").removeClass('modal-open');
+            $(".modal-backdrop").remove();
+
             this.transitionToRoute('admin');
         },
-        cancelEdit(model){
+        cancelEdit(){
             this.transitionToRoute('admin');
             this.set('editMode', false);
         }

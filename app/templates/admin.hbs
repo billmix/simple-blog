@@ -23,7 +23,7 @@
     {{#each model as |post index|}}
     <tr>
         <th scope="row">{{index}}</th>
-        <td>{{post.title}}</td>
+        <td>{{post.title}}{{#link-to "post" post.id class="link-helper" target="_blank"}}{{material-icon "launch"}}{{/link-to}}</td>
         <td>{{if post.post_published "Published" "Draft"}}</td>
         <td>{{unix post.created_at}}</td>
         <td>{{post.updated_at}}</td>
@@ -52,7 +52,5 @@
     </tbody>
 </table>
 
-    
+
 </div>
-
-

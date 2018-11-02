@@ -5,7 +5,7 @@
             <h1 class="text-center">Get Yer Posts Here</h1>
         </div>
     </div>
-    
+
     <div class="row">
         {{#each model as |post|}}
 
@@ -19,7 +19,7 @@
                     {{#link-to 'post' post.id}}{{post.title}}{{/link-to}}
                     </h5>
                     <p class="small">{{unix post.created_at}}</p>
-                    <p>{{markdown-to-html post.content}}</p>
+                    <p>{{post.content}}</p>
                 </div>
             </div>
 
