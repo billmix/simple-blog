@@ -9,8 +9,9 @@
         </button>
       </div>
       <div class="modal-body">
-        {{input value=model.title class="form-control"}}
-        {{textarea value=model.content class="form-control" cols="80" rows="6"}}
+        {{input value=model.title class="form-control my-3"}}
+        {{input value=model.featured_image class="form-control my-3"}}
+        {{textarea value=model.content class="form-control my-3" cols="80" rows="6"}}
       </div>
       <div class="modal-footer">
         <button type="button" {{action "cancelEdit" model}} class="btn btn-secondary" data-dismiss="modal">Close</button>

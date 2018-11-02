@@ -11,7 +11,7 @@ Router.map(function() {
     this.route('edit', {path: ':id'});
     this.route('create');
   });
-  this.route('posts');
+  this.route('posts', {path: '/'});
   this.route('post', {path: '/post/:id'});
 });
 

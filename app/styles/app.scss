@@ -1,2 +1,19 @@
 
 @import "ember-cli-bootstrap-4/bootstrap";
+
+
+.published{
+
+}
+
+.draft{
+    opacity: 0.5;
+}
+
+
+.post-header{
+    min-height: 50vh;
+    max-height: 70vh;
+    background: center center no-repeat;
+    background-size: cover;
+}

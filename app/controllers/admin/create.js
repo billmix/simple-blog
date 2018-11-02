@@ -8,7 +8,8 @@ export default Controller.extend({
                 title: this.get('titleInput'),
                 content: this.get('contentInput'),
                 updated_at: moment().unix(),
-                created_at: moment().unix() 
+                featured_image: 'https://picsum.photos/200/150/?random?image=' + moment().unix(),
+                created_at: moment().unix()
             }).save();
             this.set('titleInput', '');
             this.set('contentInput', '');

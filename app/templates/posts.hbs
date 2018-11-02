@@ -2,9 +2,10 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <h1 class="text-center">Get Your Mother Effin Posts Here</h1>
+            <h1 class="text-center">Get Yer Posts Here</h1>
         </div>
     </div>
+    
     <div class="row">
         {{#each model as |post|}}
 
@@ -12,7 +13,7 @@
           <div class="col-md-4">
 
           <div class="card my-3" id="postCard">
-            <img src="{{post.featured_image}}?image={{post.id}}" class="card-img-top img-fluid published">
+            <img src="{{post.featured_image}}" class="card-img-top img-fluid published">
                 <div class="card-body">
                     <h5 class="card-title text-black">
                     {{#link-to 'post' post.id}}{{post.title}}{{/link-to}}
