@@ -1,62 +1,21 @@
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8 my-5">
-            <h1>{{ name }}</h1>
-        </div>
-    </div>
-</div>
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8 my-4">
-          <h3>Write a new post</h3>
-          <div class="form-group">
-            <label for="postTitle">Post Title</label>
-            {{input value=titleInput class="form-control" placeholder="My Great Post"}}
-          </div>
-          <div class="form-group">
-            <label for="postContent">Post Content</label>
-            {{textarea value=contentInput class="form-control" cols="80" rows="6" placeholder="This had better be good!"}}
-          </div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-          <button class="btn btn-primary" type="submit" value="submit" {{action "saveNewPost"}}>Save</button>
-
-          <hr>
-        </div>
-    </div>
-</div>
-<div class="container">
-  <div class="row justify-content-center">
-    {{#each model as |post|}}
-      <div class="col-md-4">
-
-      <div class="card my-3" id="postCard">
-        <img src="{{post.featured_image}}?image={{post.id}}" class="card-img-top img-fluid {{if post.post_published "published" "draft"}}">
-            <div class="card-body">
-
-                  <h5 class="card-title {{if post.post_published "text-black" "text-secondary"}}">
-                  {{post.title}} {{if post.post_published "" "(DRAFT)"}}
-                  </h5>
-
-                <p class="small">{{unix post.created_at}}</p>
-                {{#if post.post_published}}
-                <button class="btn btn-success" {{action "postToDraft" post}}>Set to Draft</button>
-                {{else}}
-                
-                {{#if post.postToDelete}}
-                <button class="btn btn-danger" {{action "deletePost" post}}>Really?</button>
-                <button class="btn btn-secondary" {{action "cancelDeletePost" post}}>Cancel</button>
-                {{else}}
-                <button class="btn btn-secondary" {{action "postToPublished" post}}>Publish</button>
-                <button class="btn btn-danger" {{action "setDeletePost" post}}>Delete</button>
-                <button class="btn btn-primary" {{action "editPost" post}}>Edit</button>
-                {{/if}}
-
-                {{/if}}
-            </div>
-        </div>
-
-      </div>    
-    {{/each}}
-    
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        {{link-to 'Posts' 'posts' class="nav-link"}}
+      </li>
+    </ul>
+    <ul class="navbar-nav">
+        <li class="nav-item active">
+            {{link-to 'Admin' 'admin' class="nav-link btn btn-outline-primary" role=button}}
+        </li>
+    </ul>
   </div>
-</div>
+</nav>
+
+{{outlet}}
