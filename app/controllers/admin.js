@@ -6,16 +6,6 @@ export default Controller.extend({
     postToEdit: null,
     editMode: false,
     actions:{
-        saveNewPost(post){
-            this.store.createRecord('post',{
-                title: this.get('titleInput'),
-                content: this.get('contentInput'),
-                updated_at: moment().unix(),
-                created_at: moment().unix() 
-            }).save();
-            this.set('titleInput', '');
-            this.set('contentInput', '');
-        },
         postToDraft(post){
             post.set('post_published', false);
             post.save();
@@ -30,20 +20,7 @@ export default Controller.extend({
             this.set('contentInput', post.get('content'));
             this.set('postToEdit', post.get('id'));
             this.set('editMode', true);
-        },
-
-        updatePost(postToEdit){
-            var contentInput = this.get('contentInput');
-            var titleInput = this.get('titleInput');
-            var post = this.store.find('post', postToEdit).then(function(post){
-                post.set('title', titleInput);
-                post.set('content', contentInput);
-                post.save();
-            });
-            this.set('contentInput', '');
-            this.set('titleInput', '');
-            this.set('editMode', false);
-        },
+        },       
 
         setDeletePost(post){
             post.set('postToDelete', post);

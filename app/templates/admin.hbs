@@ -1,31 +1,10 @@
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8 my-5">
-            <h1>{{ name }}</h1>
-        </div>
+  <div class="row my-5">
+    <div class="col-md">
+      {{#link-to "admin.create" class="btn btn-primary float-right"}}Create a New Post{{/link-to}}
+      {{outlet}}
     </div>
-</div>
-
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8 my-4">
-          <h3>{{if editMode "Edit your" "Write a new"}} post</h3>
-          <div class="form-group">
-            <label for="postTitle">Post Title</label>
-            {{input value=titleInput class="form-control" placeholder="My Great Post"}}
-          </div>
-          <div class="form-group">
-            <label for="postContent">Post Content</label>
-            {{textarea value=contentInput class="form-control" cols="80" rows="6" placeholder="This had better be good!"}}
-          </div>
-          {{#if editMode}}
-          <button class="btn btn-primary" type="submit" value="submit" {{action "updatePost" postToEdit}}>Update Post</button>
-          {{else}}
-          <button class="btn btn-primary" type="submit" value="submit" {{action "saveNewPost"}}>Save</button>
-          {{/if}}
-          <hr>
-        </div>
-    </div>
+  </div>
 </div>
 
 <div class="container">
@@ -76,4 +55,4 @@
     
 </div>
 
-{{outlet}}
+

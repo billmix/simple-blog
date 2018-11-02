@@ -9,17 +9,13 @@
         </button>
       </div>
       <div class="modal-body">
-        {{input model.title placeholder=model.title value=model.title class="form-control"}}
-        {{textarea model.content placeholder=model.content value=model.content class="form-control" cols="80" rows="6"}}
+        {{input value=model.title class="form-control"}}
+        {{textarea value=model.content class="form-control" cols="80" rows="6"}}
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button class="btn btn-primary" type="submit" value="submit" {{action "updatePost" postToEdit}}>Save Changes</button>
+        <button type="button" {{action "cancelEdit" model}} class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button class="btn btn-primary" type="submit" value="submit" {{action "updatePost" model}}>Save Changes</button>
       </div>
     </div>
   </div>
 </div>
-
-
-
-
