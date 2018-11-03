@@ -1,14 +1,12 @@
-
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
             <h1 class="text-center">Get Yer Posts Here</h1>
         </div>
     </div>
-
+    {{outlet}}
     <div class="row">
         {{#each model as |post|}}
-
         {{#if post.post_published }}
           <div class="col-md-4">
 
@@ -16,10 +14,10 @@
             <img src="{{post.featured_image}}" class="card-img-top img-fluid published">
                 <div class="card-body">
                     <h5 class="card-title text-black">
-                    {{#link-to 'post' post.id}}{{post.title}}{{/link-to}}
+                    {{#link-to "post" post}}{{post.title}}{{/link-to}}
                     </h5>
                     <p class="small">{{unix post.created_at}}</p>
-                    <p>{{post.content}}</p>
+                    <p>{{generate-excerpt content=post.content excerptLimit=250}}</p>
                 </div>
             </div>
 

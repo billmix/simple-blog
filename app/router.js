@@ -12,7 +12,8 @@ Router.map(function() {
     this.route('create');
   });
   this.route('posts', {path: '/'});
-  this.route('post', {path: '/post/:id'});
+  this.route('featured');
+  this.route('post', {path: '/posts/post/:id'});
 });
 
 export default Router;

@@ -1,10 +1,12 @@
 import Controller from '@ember/controller';
 import moment from 'moment';
+import { alias } from '@ember/object/computed';
 
 export default Controller.extend({
     postToDelete: null,
     postToEdit: null,
     editMode: false,
+    totalPosts: alias('model.post.length'),
     actions:{
         postToDraft(post){
             post.set('post_published', false);
@@ -20,7 +22,7 @@ export default Controller.extend({
             this.set('contentInput', post.get('content'));
             this.set('postToEdit', post.get('id'));
             this.set('editMode', true);
-        },       
+        },
 
         setDeletePost(post){
             post.set('postToDelete', post);
