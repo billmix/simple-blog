@@ -1,0 +1,12 @@
+
+
+<div class="card my-3" id="postCard">
+  <img src="{{featured_image}}" class="card-img-top img-fluid published">
+      <div class="card-body">
+          <h5 class="card-title text-black">
+          {{#link-to "post" route}}{{title}}{{/link-to}}
+          </h5>
+          <p class="small">{{unix created_at}}</p>
+          <p>{{generate-excerpt content=content excerptLimit=250}}</p>
+      </div>
+  </div>

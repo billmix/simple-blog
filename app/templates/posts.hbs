@@ -7,20 +7,9 @@
     {{outlet}}
     <div class="row">
         {{#each model as |post|}}
-        {{#if post.post_published }}
+          {{#if post.post_published }}
           <div class="col-md-4">
-
-          <div class="card my-3" id="postCard">
-            <img src="{{post.featured_image}}" class="card-img-top img-fluid published">
-                <div class="card-body">
-                    <h5 class="card-title text-black">
-                    {{#link-to "post" post}}{{post.title}}{{/link-to}}
-                    </h5>
-                    <p class="small">{{unix post.created_at}}</p>
-                    <p>{{generate-excerpt content=post.content excerptLimit=250}}</p>
-                </div>
-            </div>
-
+            {{post-card featured_image=post.featured_image route=post title=post.title created_at=post.created_at content=post.content}}
           </div>
           {{/if}}
         {{/each}}

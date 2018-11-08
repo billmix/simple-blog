@@ -1,11 +1,13 @@
 import Controller from '@ember/controller';
 import moment from 'moment';
 import { alias } from '@ember/object/computed';
+import { filterBy } from '@ember/object/computed';
 
 export default Controller.extend({
     postToDelete: null,
     postToEdit: null,
     editMode: false,
+    publishedPosts: filterBy('post', 'post_published', true),
     totalPosts: alias('model.post.length'),
     actions:{
         postToDraft(post){
