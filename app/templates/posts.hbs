@@ -9,7 +9,7 @@
         {{#each model as |post|}}
           {{#if post.post_published }}
           <div class="col-md-4">
-            {{post-card featured_image=post.featured_image route=post title=post.title created_at=post.created_at content=post.content}}
+            {{post-card post.featured_image post post.title post.created_at post.content}}
           </div>
           {{/if}}
         {{/each}}
